@@ -9,7 +9,7 @@ object SparkApiClient  extends App{
   val host = "127.0.0.1"
 
   def execute_query():Unit = {
-    val query = "select hour,m1 from RawTable limit 10"
+    val query = "select hour,k1,m1 from RawTable limit 10"
     val transport = new TSocket(host,port)
     val protocol = new TBinaryProtocol(transport)
     val client = new SparkAPI.Client(protocol)
