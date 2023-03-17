@@ -12,17 +12,17 @@ public class SparkAPI {
 
     public interface Iface {
 
-        public TResults exectureCommand(java.lang.String sql_statment) throws org.apache.thrift.TException;
+        public TResults exectureCommand(SQLStatment query) throws org.apache.thrift.TException;
 
-        public java.lang.String readFile(java.lang.String pathOfFile) throws org.apache.thrift.TException;
+        public java.lang.String readFile(ReadData file_to_read) throws org.apache.thrift.TException;
 
     }
 
     public interface AsyncIface {
 
-        public void exectureCommand(java.lang.String sql_statment, org.apache.thrift.async.AsyncMethodCallback<TResults> resultHandler) throws org.apache.thrift.TException;
+        public void exectureCommand(SQLStatment query, org.apache.thrift.async.AsyncMethodCallback<TResults> resultHandler) throws org.apache.thrift.TException;
 
-        public void readFile(java.lang.String pathOfFile, org.apache.thrift.async.AsyncMethodCallback<java.lang.String> resultHandler) throws org.apache.thrift.TException;
+        public void readFile(ReadData file_to_read, org.apache.thrift.async.AsyncMethodCallback<java.lang.String> resultHandler) throws org.apache.thrift.TException;
 
     }
 
@@ -46,16 +46,16 @@ public class SparkAPI {
             super(iprot, oprot);
         }
 
-        public TResults exectureCommand(java.lang.String sql_statment) throws org.apache.thrift.TException
+        public TResults exectureCommand(SQLStatment query) throws org.apache.thrift.TException
         {
-            send_exectureCommand(sql_statment);
+            send_exectureCommand(query);
             return recv_exectureCommand();
         }
 
-        public void send_exectureCommand(java.lang.String sql_statment) throws org.apache.thrift.TException
+        public void send_exectureCommand(SQLStatment query) throws org.apache.thrift.TException
         {
             exectureCommand_args args = new exectureCommand_args();
-            args.setSql_statment(sql_statment);
+            args.setQuery(query);
             sendBase("exectureCommand", args);
         }
 
@@ -69,16 +69,16 @@ public class SparkAPI {
             throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "exectureCommand failed: unknown result");
         }
 
-        public java.lang.String readFile(java.lang.String pathOfFile) throws org.apache.thrift.TException
+        public java.lang.String readFile(ReadData file_to_read) throws org.apache.thrift.TException
         {
-            send_readFile(pathOfFile);
+            send_readFile(file_to_read);
             return recv_readFile();
         }
 
-        public void send_readFile(java.lang.String pathOfFile) throws org.apache.thrift.TException
+        public void send_readFile(ReadData file_to_read) throws org.apache.thrift.TException
         {
             readFile_args args = new readFile_args();
-            args.setPathOfFile(pathOfFile);
+            args.setFile_to_read(file_to_read);
             sendBase("readFile", args);
         }
 
@@ -110,24 +110,24 @@ public class SparkAPI {
             super(protocolFactory, clientManager, transport);
         }
 
-        public void exectureCommand(java.lang.String sql_statment, org.apache.thrift.async.AsyncMethodCallback<TResults> resultHandler) throws org.apache.thrift.TException {
+        public void exectureCommand(SQLStatment query, org.apache.thrift.async.AsyncMethodCallback<TResults> resultHandler) throws org.apache.thrift.TException {
             checkReady();
-            exectureCommand_call method_call = new exectureCommand_call(sql_statment, resultHandler, this, ___protocolFactory, ___transport);
+            exectureCommand_call method_call = new exectureCommand_call(query, resultHandler, this, ___protocolFactory, ___transport);
             this.___currentMethod = method_call;
             ___manager.call(method_call);
         }
 
         public static class exectureCommand_call extends org.apache.thrift.async.TAsyncMethodCall<TResults> {
-            private java.lang.String sql_statment;
-            public exectureCommand_call(java.lang.String sql_statment, org.apache.thrift.async.AsyncMethodCallback<TResults> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+            private SQLStatment query;
+            public exectureCommand_call(SQLStatment query, org.apache.thrift.async.AsyncMethodCallback<TResults> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
                 super(client, protocolFactory, transport, resultHandler, false);
-                this.sql_statment = sql_statment;
+                this.query = query;
             }
 
             public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
                 prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("exectureCommand", org.apache.thrift.protocol.TMessageType.CALL, 0));
                 exectureCommand_args args = new exectureCommand_args();
-                args.setSql_statment(sql_statment);
+                args.setQuery(query);
                 args.write(prot);
                 prot.writeMessageEnd();
             }
@@ -142,24 +142,24 @@ public class SparkAPI {
             }
         }
 
-        public void readFile(java.lang.String pathOfFile, org.apache.thrift.async.AsyncMethodCallback<java.lang.String> resultHandler) throws org.apache.thrift.TException {
+        public void readFile(ReadData file_to_read, org.apache.thrift.async.AsyncMethodCallback<java.lang.String> resultHandler) throws org.apache.thrift.TException {
             checkReady();
-            readFile_call method_call = new readFile_call(pathOfFile, resultHandler, this, ___protocolFactory, ___transport);
+            readFile_call method_call = new readFile_call(file_to_read, resultHandler, this, ___protocolFactory, ___transport);
             this.___currentMethod = method_call;
             ___manager.call(method_call);
         }
 
         public static class readFile_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.String> {
-            private java.lang.String pathOfFile;
-            public readFile_call(java.lang.String pathOfFile, org.apache.thrift.async.AsyncMethodCallback<java.lang.String> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+            private ReadData file_to_read;
+            public readFile_call(ReadData file_to_read, org.apache.thrift.async.AsyncMethodCallback<java.lang.String> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
                 super(client, protocolFactory, transport, resultHandler, false);
-                this.pathOfFile = pathOfFile;
+                this.file_to_read = file_to_read;
             }
 
             public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
                 prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("readFile", org.apache.thrift.protocol.TMessageType.CALL, 0));
                 readFile_args args = new readFile_args();
-                args.setPathOfFile(pathOfFile);
+                args.setFile_to_read(file_to_read);
                 args.write(prot);
                 prot.writeMessageEnd();
             }
@@ -212,7 +212,7 @@ public class SparkAPI {
 
             public exectureCommand_result getResult(I iface, exectureCommand_args args) throws org.apache.thrift.TException {
                 exectureCommand_result result = new exectureCommand_result();
-                result.success = iface.exectureCommand(args.sql_statment);
+                result.success = iface.exectureCommand(args.query);
                 return result;
             }
         }
@@ -237,7 +237,7 @@ public class SparkAPI {
 
             public readFile_result getResult(I iface, readFile_args args) throws org.apache.thrift.TException {
                 readFile_result result = new readFile_result();
-                result.success = iface.readFile(args.pathOfFile);
+                result.success = iface.readFile(args.file_to_read);
                 return result;
             }
         }
@@ -317,7 +317,7 @@ public class SparkAPI {
             }
 
             public void start(I iface, exectureCommand_args args, org.apache.thrift.async.AsyncMethodCallback<TResults> resultHandler) throws org.apache.thrift.TException {
-                iface.exectureCommand(args.sql_statment,resultHandler);
+                iface.exectureCommand(args.query,resultHandler);
             }
         }
 
@@ -378,7 +378,7 @@ public class SparkAPI {
             }
 
             public void start(I iface, readFile_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.String> resultHandler) throws org.apache.thrift.TException {
-                iface.readFile(args.pathOfFile,resultHandler);
+                iface.readFile(args.file_to_read,resultHandler);
             }
         }
 
@@ -387,16 +387,16 @@ public class SparkAPI {
     public static class exectureCommand_args implements org.apache.thrift.TBase<exectureCommand_args, exectureCommand_args._Fields>, java.io.Serializable, Cloneable, Comparable<exectureCommand_args>   {
         private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("exectureCommand_args");
 
-        private static final org.apache.thrift.protocol.TField SQL_STATMENT_FIELD_DESC = new org.apache.thrift.protocol.TField("sql_statment", org.apache.thrift.protocol.TType.STRING, (short)1);
+        private static final org.apache.thrift.protocol.TField QUERY_FIELD_DESC = new org.apache.thrift.protocol.TField("query", org.apache.thrift.protocol.TType.STRUCT, (short)1);
 
         private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new exectureCommand_argsStandardSchemeFactory();
         private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new exectureCommand_argsTupleSchemeFactory();
 
-        public @org.apache.thrift.annotation.Nullable java.lang.String sql_statment; // required
+        public @org.apache.thrift.annotation.Nullable SQLStatment query; // required
 
         /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-            SQL_STATMENT((short)1, "sql_statment");
+            QUERY((short)1, "query");
 
             private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -412,8 +412,8 @@ public class SparkAPI {
             @org.apache.thrift.annotation.Nullable
             public static _Fields findByThriftId(int fieldId) {
                 switch(fieldId) {
-                    case 1: // SQL_STATMENT
-                        return SQL_STATMENT;
+                    case 1: // QUERY
+                        return QUERY;
                     default:
                         return null;
                 }
@@ -458,8 +458,8 @@ public class SparkAPI {
         public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
         static {
             java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-            tmpMap.put(_Fields.SQL_STATMENT, new org.apache.thrift.meta_data.FieldMetaData("sql_statment", org.apache.thrift.TFieldRequirementType.DEFAULT,
-                    new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+            tmpMap.put(_Fields.QUERY, new org.apache.thrift.meta_data.FieldMetaData("query", org.apache.thrift.TFieldRequirementType.DEFAULT,
+                    new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, SQLStatment.class)));
             metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
             org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(exectureCommand_args.class, metaDataMap);
         }
@@ -468,18 +468,18 @@ public class SparkAPI {
         }
 
         public exectureCommand_args(
-                java.lang.String sql_statment)
+                SQLStatment query)
         {
             this();
-            this.sql_statment = sql_statment;
+            this.query = query;
         }
 
         /**
          * Performs a deep copy on <i>other</i>.
          */
         public exectureCommand_args(exectureCommand_args other) {
-            if (other.isSetSql_statment()) {
-                this.sql_statment = other.sql_statment;
+            if (other.isSetQuery()) {
+                this.query = new SQLStatment(other.query);
             }
         }
 
@@ -489,41 +489,41 @@ public class SparkAPI {
 
         @Override
         public void clear() {
-            this.sql_statment = null;
+            this.query = null;
         }
 
         @org.apache.thrift.annotation.Nullable
-        public java.lang.String getSql_statment() {
-            return this.sql_statment;
+        public SQLStatment getQuery() {
+            return this.query;
         }
 
-        public exectureCommand_args setSql_statment(@org.apache.thrift.annotation.Nullable java.lang.String sql_statment) {
-            this.sql_statment = sql_statment;
+        public exectureCommand_args setQuery(@org.apache.thrift.annotation.Nullable SQLStatment query) {
+            this.query = query;
             return this;
         }
 
-        public void unsetSql_statment() {
-            this.sql_statment = null;
+        public void unsetQuery() {
+            this.query = null;
         }
 
-        /** Returns true if field sql_statment is set (has been assigned a value) and false otherwise */
-        public boolean isSetSql_statment() {
-            return this.sql_statment != null;
+        /** Returns true if field query is set (has been assigned a value) and false otherwise */
+        public boolean isSetQuery() {
+            return this.query != null;
         }
 
-        public void setSql_statmentIsSet(boolean value) {
+        public void setQueryIsSet(boolean value) {
             if (!value) {
-                this.sql_statment = null;
+                this.query = null;
             }
         }
 
         public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
             switch (field) {
-                case SQL_STATMENT:
+                case QUERY:
                     if (value == null) {
-                        unsetSql_statment();
+                        unsetQuery();
                     } else {
-                        setSql_statment((java.lang.String)value);
+                        setQuery((SQLStatment)value);
                     }
                     break;
 
@@ -533,8 +533,8 @@ public class SparkAPI {
         @org.apache.thrift.annotation.Nullable
         public java.lang.Object getFieldValue(_Fields field) {
             switch (field) {
-                case SQL_STATMENT:
-                    return getSql_statment();
+                case QUERY:
+                    return getQuery();
 
             }
             throw new java.lang.IllegalStateException();
@@ -547,8 +547,8 @@ public class SparkAPI {
             }
 
             switch (field) {
-                case SQL_STATMENT:
-                    return isSetSql_statment();
+                case QUERY:
+                    return isSetQuery();
             }
             throw new java.lang.IllegalStateException();
         }
@@ -566,12 +566,12 @@ public class SparkAPI {
             if (this == that)
                 return true;
 
-            boolean this_present_sql_statment = true && this.isSetSql_statment();
-            boolean that_present_sql_statment = true && that.isSetSql_statment();
-            if (this_present_sql_statment || that_present_sql_statment) {
-                if (!(this_present_sql_statment && that_present_sql_statment))
+            boolean this_present_query = true && this.isSetQuery();
+            boolean that_present_query = true && that.isSetQuery();
+            if (this_present_query || that_present_query) {
+                if (!(this_present_query && that_present_query))
                     return false;
-                if (!this.sql_statment.equals(that.sql_statment))
+                if (!this.query.equals(that.query))
                     return false;
             }
 
@@ -582,9 +582,9 @@ public class SparkAPI {
         public int hashCode() {
             int hashCode = 1;
 
-            hashCode = hashCode * 8191 + ((isSetSql_statment()) ? 131071 : 524287);
-            if (isSetSql_statment())
-                hashCode = hashCode * 8191 + sql_statment.hashCode();
+            hashCode = hashCode * 8191 + ((isSetQuery()) ? 131071 : 524287);
+            if (isSetQuery())
+                hashCode = hashCode * 8191 + query.hashCode();
 
             return hashCode;
         }
@@ -597,12 +597,12 @@ public class SparkAPI {
 
             int lastComparison = 0;
 
-            lastComparison = java.lang.Boolean.compare(isSetSql_statment(), other.isSetSql_statment());
+            lastComparison = java.lang.Boolean.compare(isSetQuery(), other.isSetQuery());
             if (lastComparison != 0) {
                 return lastComparison;
             }
-            if (isSetSql_statment()) {
-                lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.sql_statment, other.sql_statment);
+            if (isSetQuery()) {
+                lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.query, other.query);
                 if (lastComparison != 0) {
                     return lastComparison;
                 }
@@ -628,11 +628,11 @@ public class SparkAPI {
             java.lang.StringBuilder sb = new java.lang.StringBuilder("exectureCommand_args(");
             boolean first = true;
 
-            sb.append("sql_statment:");
-            if (this.sql_statment == null) {
+            sb.append("query:");
+            if (this.query == null) {
                 sb.append("null");
             } else {
-                sb.append(this.sql_statment);
+                sb.append(this.query);
             }
             first = false;
             sb.append(")");
@@ -642,6 +642,9 @@ public class SparkAPI {
         public void validate() throws org.apache.thrift.TException {
             // check for required fields
             // check for sub-struct validity
+            if (query != null) {
+                query.validate();
+            }
         }
 
         private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -678,10 +681,11 @@ public class SparkAPI {
                         break;
                     }
                     switch (schemeField.id) {
-                        case 1: // SQL_STATMENT
-                            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                                struct.sql_statment = iprot.readString();
-                                struct.setSql_statmentIsSet(true);
+                        case 1: // QUERY
+                            if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                                struct.query = new SQLStatment();
+                                struct.query.read(iprot);
+                                struct.setQueryIsSet(true);
                             } else {
                                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
                             }
@@ -701,9 +705,9 @@ public class SparkAPI {
                 struct.validate();
 
                 oprot.writeStructBegin(STRUCT_DESC);
-                if (struct.sql_statment != null) {
-                    oprot.writeFieldBegin(SQL_STATMENT_FIELD_DESC);
-                    oprot.writeString(struct.sql_statment);
+                if (struct.query != null) {
+                    oprot.writeFieldBegin(QUERY_FIELD_DESC);
+                    struct.query.write(oprot);
                     oprot.writeFieldEnd();
                 }
                 oprot.writeFieldStop();
@@ -724,12 +728,12 @@ public class SparkAPI {
             public void write(org.apache.thrift.protocol.TProtocol prot, exectureCommand_args struct) throws org.apache.thrift.TException {
                 org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
                 java.util.BitSet optionals = new java.util.BitSet();
-                if (struct.isSetSql_statment()) {
+                if (struct.isSetQuery()) {
                     optionals.set(0);
                 }
                 oprot.writeBitSet(optionals, 1);
-                if (struct.isSetSql_statment()) {
-                    oprot.writeString(struct.sql_statment);
+                if (struct.isSetQuery()) {
+                    struct.query.write(oprot);
                 }
             }
 
@@ -738,8 +742,9 @@ public class SparkAPI {
                 org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
                 java.util.BitSet incoming = iprot.readBitSet(1);
                 if (incoming.get(0)) {
-                    struct.sql_statment = iprot.readString();
-                    struct.setSql_statmentIsSet(true);
+                    struct.query = new SQLStatment();
+                    struct.query.read(iprot);
+                    struct.setQueryIsSet(true);
                 }
             }
         }
@@ -1122,16 +1127,16 @@ public class SparkAPI {
     public static class readFile_args implements org.apache.thrift.TBase<readFile_args, readFile_args._Fields>, java.io.Serializable, Cloneable, Comparable<readFile_args>   {
         private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("readFile_args");
 
-        private static final org.apache.thrift.protocol.TField PATH_OF_FILE_FIELD_DESC = new org.apache.thrift.protocol.TField("pathOfFile", org.apache.thrift.protocol.TType.STRING, (short)1);
+        private static final org.apache.thrift.protocol.TField FILE_TO_READ_FIELD_DESC = new org.apache.thrift.protocol.TField("file_to_read", org.apache.thrift.protocol.TType.STRUCT, (short)1);
 
         private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new readFile_argsStandardSchemeFactory();
         private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new readFile_argsTupleSchemeFactory();
 
-        public @org.apache.thrift.annotation.Nullable java.lang.String pathOfFile; // required
+        public @org.apache.thrift.annotation.Nullable ReadData file_to_read; // required
 
         /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-            PATH_OF_FILE((short)1, "pathOfFile");
+            FILE_TO_READ((short)1, "file_to_read");
 
             private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -1147,8 +1152,8 @@ public class SparkAPI {
             @org.apache.thrift.annotation.Nullable
             public static _Fields findByThriftId(int fieldId) {
                 switch(fieldId) {
-                    case 1: // PATH_OF_FILE
-                        return PATH_OF_FILE;
+                    case 1: // FILE_TO_READ
+                        return FILE_TO_READ;
                     default:
                         return null;
                 }
@@ -1193,8 +1198,8 @@ public class SparkAPI {
         public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
         static {
             java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-            tmpMap.put(_Fields.PATH_OF_FILE, new org.apache.thrift.meta_data.FieldMetaData("pathOfFile", org.apache.thrift.TFieldRequirementType.DEFAULT,
-                    new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+            tmpMap.put(_Fields.FILE_TO_READ, new org.apache.thrift.meta_data.FieldMetaData("file_to_read", org.apache.thrift.TFieldRequirementType.DEFAULT,
+                    new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ReadData.class)));
             metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
             org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(readFile_args.class, metaDataMap);
         }
@@ -1203,18 +1208,18 @@ public class SparkAPI {
         }
 
         public readFile_args(
-                java.lang.String pathOfFile)
+                ReadData file_to_read)
         {
             this();
-            this.pathOfFile = pathOfFile;
+            this.file_to_read = file_to_read;
         }
 
         /**
          * Performs a deep copy on <i>other</i>.
          */
         public readFile_args(readFile_args other) {
-            if (other.isSetPathOfFile()) {
-                this.pathOfFile = other.pathOfFile;
+            if (other.isSetFile_to_read()) {
+                this.file_to_read = new ReadData(other.file_to_read);
             }
         }
 
@@ -1224,41 +1229,41 @@ public class SparkAPI {
 
         @Override
         public void clear() {
-            this.pathOfFile = null;
+            this.file_to_read = null;
         }
 
         @org.apache.thrift.annotation.Nullable
-        public java.lang.String getPathOfFile() {
-            return this.pathOfFile;
+        public ReadData getFile_to_read() {
+            return this.file_to_read;
         }
 
-        public readFile_args setPathOfFile(@org.apache.thrift.annotation.Nullable java.lang.String pathOfFile) {
-            this.pathOfFile = pathOfFile;
+        public readFile_args setFile_to_read(@org.apache.thrift.annotation.Nullable ReadData file_to_read) {
+            this.file_to_read = file_to_read;
             return this;
         }
 
-        public void unsetPathOfFile() {
-            this.pathOfFile = null;
+        public void unsetFile_to_read() {
+            this.file_to_read = null;
         }
 
-        /** Returns true if field pathOfFile is set (has been assigned a value) and false otherwise */
-        public boolean isSetPathOfFile() {
-            return this.pathOfFile != null;
+        /** Returns true if field file_to_read is set (has been assigned a value) and false otherwise */
+        public boolean isSetFile_to_read() {
+            return this.file_to_read != null;
         }
 
-        public void setPathOfFileIsSet(boolean value) {
+        public void setFile_to_readIsSet(boolean value) {
             if (!value) {
-                this.pathOfFile = null;
+                this.file_to_read = null;
             }
         }
 
         public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
             switch (field) {
-                case PATH_OF_FILE:
+                case FILE_TO_READ:
                     if (value == null) {
-                        unsetPathOfFile();
+                        unsetFile_to_read();
                     } else {
-                        setPathOfFile((java.lang.String)value);
+                        setFile_to_read((ReadData)value);
                     }
                     break;
 
@@ -1268,8 +1273,8 @@ public class SparkAPI {
         @org.apache.thrift.annotation.Nullable
         public java.lang.Object getFieldValue(_Fields field) {
             switch (field) {
-                case PATH_OF_FILE:
-                    return getPathOfFile();
+                case FILE_TO_READ:
+                    return getFile_to_read();
 
             }
             throw new java.lang.IllegalStateException();
@@ -1282,8 +1287,8 @@ public class SparkAPI {
             }
 
             switch (field) {
-                case PATH_OF_FILE:
-                    return isSetPathOfFile();
+                case FILE_TO_READ:
+                    return isSetFile_to_read();
             }
             throw new java.lang.IllegalStateException();
         }
@@ -1301,12 +1306,12 @@ public class SparkAPI {
             if (this == that)
                 return true;
 
-            boolean this_present_pathOfFile = true && this.isSetPathOfFile();
-            boolean that_present_pathOfFile = true && that.isSetPathOfFile();
-            if (this_present_pathOfFile || that_present_pathOfFile) {
-                if (!(this_present_pathOfFile && that_present_pathOfFile))
+            boolean this_present_file_to_read = true && this.isSetFile_to_read();
+            boolean that_present_file_to_read = true && that.isSetFile_to_read();
+            if (this_present_file_to_read || that_present_file_to_read) {
+                if (!(this_present_file_to_read && that_present_file_to_read))
                     return false;
-                if (!this.pathOfFile.equals(that.pathOfFile))
+                if (!this.file_to_read.equals(that.file_to_read))
                     return false;
             }
 
@@ -1317,9 +1322,9 @@ public class SparkAPI {
         public int hashCode() {
             int hashCode = 1;
 
-            hashCode = hashCode * 8191 + ((isSetPathOfFile()) ? 131071 : 524287);
-            if (isSetPathOfFile())
-                hashCode = hashCode * 8191 + pathOfFile.hashCode();
+            hashCode = hashCode * 8191 + ((isSetFile_to_read()) ? 131071 : 524287);
+            if (isSetFile_to_read())
+                hashCode = hashCode * 8191 + file_to_read.hashCode();
 
             return hashCode;
         }
@@ -1332,12 +1337,12 @@ public class SparkAPI {
 
             int lastComparison = 0;
 
-            lastComparison = java.lang.Boolean.compare(isSetPathOfFile(), other.isSetPathOfFile());
+            lastComparison = java.lang.Boolean.compare(isSetFile_to_read(), other.isSetFile_to_read());
             if (lastComparison != 0) {
                 return lastComparison;
             }
-            if (isSetPathOfFile()) {
-                lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.pathOfFile, other.pathOfFile);
+            if (isSetFile_to_read()) {
+                lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.file_to_read, other.file_to_read);
                 if (lastComparison != 0) {
                     return lastComparison;
                 }
@@ -1363,11 +1368,11 @@ public class SparkAPI {
             java.lang.StringBuilder sb = new java.lang.StringBuilder("readFile_args(");
             boolean first = true;
 
-            sb.append("pathOfFile:");
-            if (this.pathOfFile == null) {
+            sb.append("file_to_read:");
+            if (this.file_to_read == null) {
                 sb.append("null");
             } else {
-                sb.append(this.pathOfFile);
+                sb.append(this.file_to_read);
             }
             first = false;
             sb.append(")");
@@ -1377,6 +1382,9 @@ public class SparkAPI {
         public void validate() throws org.apache.thrift.TException {
             // check for required fields
             // check for sub-struct validity
+            if (file_to_read != null) {
+                file_to_read.validate();
+            }
         }
 
         private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -1413,10 +1421,11 @@ public class SparkAPI {
                         break;
                     }
                     switch (schemeField.id) {
-                        case 1: // PATH_OF_FILE
-                            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                                struct.pathOfFile = iprot.readString();
-                                struct.setPathOfFileIsSet(true);
+                        case 1: // FILE_TO_READ
+                            if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                                struct.file_to_read = new ReadData();
+                                struct.file_to_read.read(iprot);
+                                struct.setFile_to_readIsSet(true);
                             } else {
                                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
                             }
@@ -1436,9 +1445,9 @@ public class SparkAPI {
                 struct.validate();
 
                 oprot.writeStructBegin(STRUCT_DESC);
-                if (struct.pathOfFile != null) {
-                    oprot.writeFieldBegin(PATH_OF_FILE_FIELD_DESC);
-                    oprot.writeString(struct.pathOfFile);
+                if (struct.file_to_read != null) {
+                    oprot.writeFieldBegin(FILE_TO_READ_FIELD_DESC);
+                    struct.file_to_read.write(oprot);
                     oprot.writeFieldEnd();
                 }
                 oprot.writeFieldStop();
@@ -1459,12 +1468,12 @@ public class SparkAPI {
             public void write(org.apache.thrift.protocol.TProtocol prot, readFile_args struct) throws org.apache.thrift.TException {
                 org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
                 java.util.BitSet optionals = new java.util.BitSet();
-                if (struct.isSetPathOfFile()) {
+                if (struct.isSetFile_to_read()) {
                     optionals.set(0);
                 }
                 oprot.writeBitSet(optionals, 1);
-                if (struct.isSetPathOfFile()) {
-                    oprot.writeString(struct.pathOfFile);
+                if (struct.isSetFile_to_read()) {
+                    struct.file_to_read.write(oprot);
                 }
             }
 
@@ -1473,8 +1482,9 @@ public class SparkAPI {
                 org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
                 java.util.BitSet incoming = iprot.readBitSet(1);
                 if (incoming.get(0)) {
-                    struct.pathOfFile = iprot.readString();
-                    struct.setPathOfFileIsSet(true);
+                    struct.file_to_read = new ReadData();
+                    struct.file_to_read.read(iprot);
+                    struct.setFile_to_readIsSet(true);
                 }
             }
         }
